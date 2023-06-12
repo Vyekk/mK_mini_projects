@@ -1,27 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basket Mk</title>
-</head>
-<body>
-    <div class="container">
-        <section class="products">
-            <h2>Lista produktów</h2>
-            <ul class="product-list">
-                <li><strong>Ogórki kiszone</strong> - 8.99zł <button class="btn-buy-item" data-name="ogorki" data-price="8.99">Kup</button></li>
-                <li><strong>Pomidory malinowe</strong> - 12.50zł <button class="btn-buy-item" data-name="pomidory" data-price="12.50">Kup</button></li>
-                <li><strong>Arbuz</strong> - 23.00zł <button class="btn-buy-item" data-name="arbuz" data-price="23.00">Kup</button></li>
-            </ul>
-        </section>
-        <section class="basket">
-            <h2>Koszyk</h2>
-            <ul class="basket-list"></ul>
-            <button class="btn-buy-all">Złóż zamówienie</button>
-        </section>
-    </div>
-    <script src="js/main.js" type="module"></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Basket Mk</title>
+    </head>
+    <body>
+        <div class="container">
+            <section class="products">
+                <h2>Lista produktów</h2>
+                <ul class="product-list">
+                    <li>
+                        <strong>Ogórki kiszone</strong> - 8.99zł
+                        <button
+                            class="btn-buy-item"
+                            data-name="Ogórki kiszone"
+                            data-price="8.99"
+                        >
+                            Kup
+                        </button>
+                    </li>
+                    <li>
+                        <strong>Pomidory malinowe</strong> - 12.50zł
+                        <button
+                            class="btn-buy-item"
+                            data-name="Pomidory malinowe"
+                            data-price="12.50"
+                        >
+                            Kup
+                        </button>
+                    </li>
+                    <li>
+                        <strong>Arbuz</strong> - 23.00zł
+                        <button
+                            class="btn-buy-item"
+                            data-name="Arbuz"
+                            data-price="23.00"
+                        >
+                            Kup
+                        </button>
+                    </li>
+                </ul>
+            </section>
+            <section class="basket">
+                <h2>Koszyk</h2>
+                <ol class="basket-list"></ol>
+                <button class="btn-buy-all" disabled>Złóż zamówienie</button>
+            </section>
+        </div>
+        <script src="js/main.js" type="module"></script>
+    </body>
 </html>
