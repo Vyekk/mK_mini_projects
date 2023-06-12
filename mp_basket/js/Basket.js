@@ -9,7 +9,7 @@ class Basket {
         this.basket = [];
     }
     removeProduct(productNumber) {
-        this.basket.splice(productNumber - 1);
+        this.basket.splice(productNumber - 1, 1);
     }
     getBusketSummary() {
         return this.basket.map((product, i) => {

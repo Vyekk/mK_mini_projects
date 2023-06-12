@@ -13,12 +13,18 @@ const createUiBasket = () => {
         const productLi = document.createElement("li");
         productLi.innerText = text;
         productLi.dataset.id = id;
+        productLi.addEventListener("click", removeItemFromBusket);
         uiBasket.appendChild(productLi);
     }
     buyAllBtn.innerText = `Złóż zamówienie za ${basket
         .getBusketTotalPrice()
         .toFixed(2)}zł`;
     buyAllBtn.disabled = basket.getBusketTotalPrice() === 0;
+};
+
+const removeItemFromBusket = (event) => {
+    basket.removeProduct(event.target.dataset.id);
+    createUiBasket();
 };
 
 const addProductToBasket = (event) => {
@@ -33,7 +39,7 @@ productBtns.forEach((button) => {
     button.addEventListener("click", addProductToBasket);
 });
 
-buyAllBtn?.addEventListener("click", () => {
+buyAllBtn.addEventListener("click", () => {
     alert(`Złożono zamówienie na wszystkie wybrane przez Ciebie produkty`);
     basket.resetBasket();
     createUiBasket();
