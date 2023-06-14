@@ -68,3 +68,5 @@ adminAddProductForm.addEventListener("submit", (event) => {
     productList.appendChild(productLi);
     event.target.reset();
 });
+
+createUiBasket();
