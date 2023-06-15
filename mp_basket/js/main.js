@@ -9,6 +9,21 @@ const productList = document.querySelector(".product-list");
 
 const basket = new Basket();
 
+const saveToLocalStorage = (name, price) => {
+    const shopProducts =
+        JSON.parse(localStorage.getItem("shop-products")) ?? [];
+    shopProducts.push({ name, price });
+    localStorage.setItem("shop-products", JSON.stringify(shopProducts));
+};
+
+const loadFromLocalStorage = () => {
+    const shopProducts =
+        JSON.parse(localStorage.getItem("shop-products")) ?? [];
+    for (const { name, price } of shopProducts) {
+        addProductToShop(name, price);
+    }
+};
+
 const createUiBasket = () => {
     uiBasket.innerText = "";
     for (const { id, text } of basket.getBusketSummary()) {
@@ -37,20 +52,13 @@ const addProductToBasket = (event) => {
     createUiBasket();
 };
 
-productBtns.forEach((button) => {
-    button.addEventListener("click", addProductToBasket);
-});
-
-buyAllBtn.addEventListener("click", () => {
+const handleBuyAllButton = () => {
     alert(`Złożono zamówienie na wszystkie wybrane przez Ciebie produkty`);
     basket.resetBasket();
     createUiBasket();
-});
+};
 
-adminAddProductForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const newProductName = event.target.elements["product-name"].value;
-    const newProductPrice = event.target.elements["product-price"].value;
+const addProductToShop = (newProductName, newProductPrice) => {
     const productLi = document.createElement("li");
     const strongName = document.createElement("strong");
     const priceNode = document.createTextNode(` - ${newProductPrice}zł `);
@@ -66,7 +74,22 @@ adminAddProductForm.addEventListener("submit", (event) => {
     productLi.appendChild(priceNode);
     productLi.appendChild(buyBtn);
     productList.appendChild(productLi);
+};
+
+const handleAddProductFormSubmit = (event) => {
+    event.preventDefault();
+    const newProductName = event.target.elements["product-name"].value;
+    const newProductPrice = event.target.elements["product-price"].value;
+    addProductToShop(newProductName, newProductPrice);
+    saveToLocalStorage(newProductName, newProductPrice);
     event.target.reset();
+};
+
+productBtns.forEach((button) => {
+    button.addEventListener("click", addProductToBasket);
 });
+buyAllBtn.addEventListener("click", handleBuyAllButton);
+adminAddProductForm.addEventListener("submit", handleAddProductFormSubmit);
 
 createUiBasket();
+loadFromLocalStorage();
