@@ -5,8 +5,7 @@ const randomBytes = promisify(require('crypto').randomBytes);
 const { createCipheriv } = require('crypto');
 
 const ALGORITHM = 'aes-192-cbc';
-const USER_PATH = process.argv[2];
-const USER_PASSWORD = process.argv[3];
+const [, , USER_PATH, USER_PASSWORD] = process.argv;
 
 async function createEncryptedMessage(fileContent, password, algorithm) {
   const key = await scrypt(
