@@ -7,8 +7,12 @@ async function overwriteAndDecryptFile(path, password) {
   const fileContent = await readFile(path, {
     encoding: 'utf-8',
   });
-  const decryptedMessage = await decryptMessage(fileContent, password);
-  await writeFile(path, decryptedMessage);
+  try {
+    const decryptedMessage = await decryptMessage(fileContent, password);
+    await writeFile(path, decryptedMessage);
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 
 overwriteAndDecryptFile(USER_PATH, USER_PASSWORD);
