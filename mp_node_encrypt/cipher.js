@@ -6,12 +6,10 @@ const { createHmac } = require('crypto');
 const { ENCRYPT_SALT, HASH_SALT, ALGORITHM } = require('./constants');
 
 function createHash(text, salt) {
-  return createHmac('sha512', salt)
-    .update(text)
-    .digest('hex');
+  return createHmac('sha512', salt).update(text).digest('hex');
 }
 
-async function createEncryptedMessage(fileContent, password) {
+async function encryptMessage(fileContent, password) {
   const key = await scrypt(password, ENCRYPT_SALT, 24);
   const iv = await randomBytes(16);
   const cipher = createCipheriv(ALGORITHM, key, iv);
